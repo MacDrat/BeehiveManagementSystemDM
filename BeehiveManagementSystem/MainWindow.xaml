@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeehiveManagementSystem"
         mc:Ignorable="d"
-        Title="Beehive Management System" Height="325" Width="625">
+        Title="Beehive Management System" Height="325" Width="625" Background="LightGoldenrodYellow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Label Content="Job assignments" HorizontalAlignment="Center" Margin="20,0,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <StackPanel Margin="20" Grid.Row="1" VerticalAlignment="Top" Width="100">
+        <StackPanel Margin="20" Grid.Row="1" VerticalAlignment="Top">
             <ComboBox x:Name="jobSelector" SelectedIndex="0" Margin="0,0,0,20" FontSize="18">
                 <ListBoxItem Content="Nectar Collector"/>
                 <ListBoxItem Content="Honey Manufacturer"/>
@@ -29,7 +29,7 @@
         <Button Content="Work the next shift" Margin="20" Grid.Row="2" Click="WorkShift_Click"/>
         
         <Label Content="Queen's report" Grid.Column="1" Margin="20,0" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="statusReport" Grid.Column="1" Margin="20" Grid.Row="1" IsReadOnly="True" Grid.RowSpan="2"/>
+        <TextBox x:Name="statusReport" Grid.Column="1" Margin="20" Grid.Row="1" IsReadOnly="True" Grid.RowSpan="2" Background="Gold"/>
 
     </Grid>
 </Window>

@@ -8,6 +8,7 @@ namespace BeehiveManagementSystem
 {
     class Bee
     {
+        public int lifespan { get; }
         public virtual float CostPerShift { get; }
         public string Job { get; private set; }
         public Bee(string job)

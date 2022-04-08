@@ -10,6 +10,7 @@ namespace BeehiveManagementSystem
     {
         public const float EGGS_PER_SHIFT = 0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
+        public const int LIFESPAN = 5;
 
         private Bee[] workers = new Bee[0];
         private float eggs = 0;
@@ -32,6 +33,17 @@ namespace BeehiveManagementSystem
                 unassignedWorkers--;
                 Array.Resize(ref workers, workers.Length + 1);
                 workers[workers.Length - 1] = worker;
+            }
+        }
+
+        private void RemoveWorker(Bee lifespan)
+        {
+            foreach (Bee worker in workers)
+            {
+                if (Bee.lifespan() < 5)
+                {
+
+                }
             }
         }
 
@@ -89,5 +101,7 @@ namespace BeehiveManagementSystem
             HoneyVault.ConsumeHoney(unassignedWorkers * HONEY_PER_UNASSIGNED_WORKER);
             UpdateStatusReport();
         }
+
+
     }
 }
