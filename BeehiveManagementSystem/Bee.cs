@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 
 namespace BeehiveManagementSystem
 {
-    class Bee
+    abstract class Bee : IWorker
     {
-        public int lifespan { get; }
         public virtual float CostPerShift { get; }
         public string Job { get; private set; }
         public Bee(string job)
         {
             Job = job;
+          
         }
 
         public void WorkTheNextShift()
         {
-            if (HoneyVault.ConsumeHoney(CostPerShift))
-            {
+           if (HoneyVault.ConsumeHoney(CostPerShift))
+           {
                 DoJob();
-            }
+           }
+
         }
 
-        protected virtual void DoJob() { /* subclass overrides this */}
+        protected abstract void DoJob();
     }
 }

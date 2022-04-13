@@ -37,6 +37,7 @@ namespace BeehiveManagementSystem
         {
             queen.WorkTheNextShift();
             statusReport.Text = queen.StatusReport;
+            
         }
     }
 }

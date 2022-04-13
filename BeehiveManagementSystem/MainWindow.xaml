@@ -22,6 +22,7 @@
                 <ListBoxItem Content="Nectar Collector"/>
                 <ListBoxItem Content="Honey Manufacturer"/>
                 <ListBoxItem Content="Egg Care"/>
+                <ListBoxItem Content="Dead Bee"/>
             </ComboBox>
             <Button Content="Assign this job to a bee" FontSize="18" Click="AssignJob_Click"/>
         </StackPanel>

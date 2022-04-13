@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace BeehiveManagementSystem
 {
+    
     class Queen : Bee
     {
         public const float EGGS_PER_SHIFT = 0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
-        public const int LIFESPAN = 5;
-
-        private Bee[] workers = new Bee[0];
+        private IWorker[] workers = new IWorker[0];
         private float eggs = 0;
         private float unassignedWorkers = 3;
-
         public string StatusReport { get; private set; }
         public override float CostPerShift { get { return 2.15f; } }
 
@@ -24,6 +22,8 @@ namespace BeehiveManagementSystem
             AssignBee("Nectar Collector");
             AssignBee("Honey Manufacturer");
             AssignBee("Egg Care");
+            AssignBee("Dead Bee");
+
         }
 
         private void AddWorker(Bee worker)
@@ -36,23 +36,13 @@ namespace BeehiveManagementSystem
             }
         }
 
-        private void RemoveWorker(Bee lifespan)
-        {
-            foreach (Bee worker in workers)
-            {
-                if (Bee.lifespan() < 5)
-                {
-
-                }
-            }
-        }
 
         private void UpdateStatusReport()
         {
             StatusReport = $"Vault report:\n{HoneyVault.StatusReport}\n" +
                            $"\nEgg count: {eggs:0.0}\nUnassigned workers: {unassignedWorkers:0.0}\n" +
                            $"{WorkerStatus("Nectar Collector")}\n{WorkerStatus("Honey Manufacturer")}" +
-                           $"\n{WorkerStatus("Egg Care")}\n TOTAL WORKERS: {workers.Length}";
+                           $"\n{WorkerStatus("Egg Care")}\n{WorkerStatus("Dead Bee")}\n TOTAL WORKERS: {workers.Length}";
         }
 
         public void CareForEggs(float eggsToConvert)
@@ -67,7 +57,7 @@ namespace BeehiveManagementSystem
         private string WorkerStatus(string job)
         {
             int count = 0;
-            foreach (Bee worker in workers)
+            foreach (IWorker worker in workers) 
                 if (worker.Job == job) count++;
             string s = "s";
             if (count == 1) s = " ";
@@ -87,6 +77,9 @@ namespace BeehiveManagementSystem
                 case "Egg Care":
                     AddWorker(new EggCare(this));
                     break;
+                case "Dead Bee":
+                    AddWorker(new DeadBee());
+                    break;
             }
             UpdateStatusReport();
         }
@@ -97,11 +90,11 @@ namespace BeehiveManagementSystem
             foreach (Bee worker in workers)
             {
                 worker.WorkTheNextShift();
+
             }
             HoneyVault.ConsumeHoney(unassignedWorkers * HONEY_PER_UNASSIGNED_WORKER);
             UpdateStatusReport();
         }
-
 
     }
 }
